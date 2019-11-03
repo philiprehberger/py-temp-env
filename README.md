@@ -1,5 +1,9 @@
 # philiprehberger-temp-env
 
+[![Tests](https://github.com/philiprehberger/py-temp-env/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-temp-env/actions/workflows/publish.yml)
+[![PyPI version](https://img.shields.io/pypi/v/philiprehberger-temp-env.svg)](https://pypi.org/project/philiprehberger-temp-env/)
+[![License](https://img.shields.io/github/license/philiprehberger/py-temp-env)](LICENSE)
+
 Temporarily set, override, or remove environment variables with a context manager.
 
 ## Install
