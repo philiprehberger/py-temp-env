@@ -6,7 +6,7 @@
 
 Temporarily set, override, or remove environment variables with a context manager.
 
-## Install
+## Installation
 
 ```bash
 pip install philiprehberger-temp-env
