@@ -65,7 +65,7 @@ with TempEnv(API_KEY="test", VERBOSE="1"):
     ...
 ```
 
-## API Reference
+## API
 
 | Name | Description |
 |---|---|
