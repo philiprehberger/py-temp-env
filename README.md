@@ -74,6 +74,14 @@ with TempEnv(API_KEY="test", VERBOSE="1"):
 | `TempEnv(**kwargs: str \| None)` | Class that can be used as a context manager directly. |
 | `TempEnv.from_file(path)` | Classmethod that parses a `.env` file and returns a `TempEnv` instance. |
 
+
+## Development
+
+```bash
+pip install -e .
+python -m pytest tests/ -v
+```
+
 ## License
 
 MIT
