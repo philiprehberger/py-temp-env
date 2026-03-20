@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-temp-env"
-version = "0.1.5"
+version = "0.1.6"
 description = "Temporarily set, override, or remove environment variables with a context manager"
 readme = "README.md"
 license = "MIT"
@@ -31,3 +31,9 @@ Changelog = "https://github.com/philiprehberger/py-temp-env/blob/main/CHANGELOG.
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/philiprehberger_temp_env"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.mypy]
+strict = true
