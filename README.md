@@ -3,6 +3,7 @@
 [![Tests](https://github.com/philiprehberger/py-temp-env/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/py-temp-env/actions/workflows/publish.yml)
 [![PyPI version](https://img.shields.io/pypi/v/philiprehberger-temp-env.svg)](https://pypi.org/project/philiprehberger-temp-env/)
 [![License](https://img.shields.io/github/license/philiprehberger/py-temp-env)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 Temporarily set, override, or remove environment variables with a context manager.
 
