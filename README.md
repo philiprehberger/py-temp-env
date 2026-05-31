@@ -65,6 +65,22 @@ with TempEnv(API_KEY="test", VERBOSE="1"):
     ...
 ```
 
+### Unsetting and snapshotting
+
+```python
+from philiprehberger_temp_env import temp_unset, snapshot_env, restore_env
+
+# Temporarily remove env vars; restore on exit
+with temp_unset("AWS_PROFILE", "AWS_REGION"):
+    # AWS_PROFILE and AWS_REGION are unset
+    ...
+
+# Explicit save/restore beyond a context manager block
+snap = snapshot_env("API_KEY", "DEBUG")
+# ... mutate the environment freely ...
+restore_env(snap)  # Variables that were unset before are removed again
+```
+
 ## API
 
 | Name | Description |
@@ -73,6 +89,9 @@ with TempEnv(API_KEY="test", VERBOSE="1"):
 | `env_override(**kwargs: str \| None)` | Decorator that wraps a function with temporary env var overrides. |
 | `TempEnv(**kwargs: str \| None)` | Class that can be used as a context manager directly. |
 | `TempEnv.from_file(path)` | Classmethod that parses a `.env` file and returns a `TempEnv` instance. |
+| `temp_unset(*names)` | Context manager that temporarily removes the named env vars and restores them on exit. |
+| `snapshot_env(*names)` | Returns a `dict[str, str \| None]` capturing the current value (or `None` if unset) of each name. |
+| `restore_env(snapshot)` | Restores env vars from a snapshot dict; `None` values mean "remove if present". |
 
 ## Development
 

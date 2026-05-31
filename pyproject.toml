@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "philiprehberger-temp-env"
-version = "0.1.8"
+version = "0.2.0"
 description = "Temporarily set, override, or remove environment variables with a context manager"
 readme = "README.md"
 license = "MIT"

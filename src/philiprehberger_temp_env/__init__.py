@@ -6,7 +6,14 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Any, Callable, Iterator
 
-__all__ = ["temp_env", "env_override", "TempEnv"]
+__all__ = [
+    "temp_env",
+    "env_override",
+    "TempEnv",
+    "temp_unset",
+    "snapshot_env",
+    "restore_env",
+]
 
 _UNSET = object()
 
@@ -90,3 +97,46 @@ def env_override(**kwargs: str | None) -> Callable[..., Any]:
         return wrapper
 
     return decorator
+
+
+@contextmanager
+def temp_unset(*names: str) -> Iterator[None]:
+    """Temporarily remove env vars; restore them on exit.
+
+    Variables that were not set before entering the block remain
+    unset on exit. Variables that were set are restored to their
+    original values.
+    """
+    originals: dict[str, str | object] = {
+        name: os.environ.get(name, _UNSET) for name in names
+    }
+    for name in names:
+        os.environ.pop(name, None)
+    try:
+        yield
+    finally:
+        for name, original in originals.items():
+            if original is _UNSET:
+                os.environ.pop(name, None)
+            else:
+                os.environ[name] = original  # type: ignore[assignment]
+
+
+def snapshot_env(*names: str) -> dict[str, str | None]:
+    """Return a dict mapping each name to its current value, or None if unset.
+
+    Pair with ``restore_env()`` for explicit save/restore.
+    """
+    return {name: os.environ.get(name) for name in names}
+
+
+def restore_env(snapshot: dict[str, str | None]) -> None:
+    """Restore env vars from a snapshot dict.
+
+    Values of ``None`` mean "unset on restore" (remove if present).
+    """
+    for name, value in snapshot.items():
+        if value is None:
+            os.environ.pop(name, None)
+        else:
+            os.environ[name] = value
